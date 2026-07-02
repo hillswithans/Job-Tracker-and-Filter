@@ -1,66 +1,66 @@
-# Job Tracker & Search Shield (My Job Search Guard)
-
+Job Tracker & Search Shield (My Job Search Guard)
 Asynchronous, Zero-Noise Market Gatekeeper & Priority Pipeline
-**Live Application Link:** [Launch Job Search Guard](https://lookerstudio.google.com/reporting/your-unique-id-string/copy)
-**Status:** Live Production | Monitored via continuous user-ingestion validation
 
-***
+Live Application Link: Launch Job Search Guard
 
-## 🧐 Why I Built This: The Anti-Noise Approach
+Status: Live Production | Monitored via continuous user-ingestion validation
 
-When I started this project, job searching felt like drowning in noise. LinkedIn felt like a social media trap, and Indeed was littered with predatory job postings that did not exist. Currently, I use vague search terms on LinkedIn and Indeed for job searches. It becomes time consuming because I get wrapped in the social networking and necessity of LinkedIn. Indeed is becoming less trustworthy when there are often AI farming jobs where a job is advertised but does not really exist, or information is given to third party hiring managers.
+🧐 The Vision: Anti-Noise Recruitment
+When job searching, the entry-level landscape is often oversaturated with misleading listings, predatory "AI farming," and staffing agency spam. I built Job Search Guard to shift the workflow from reactive, time-consuming browsing to an isolated, variable-driven dashboard. This system acts as a defensive framework for technical professionals to level the algorithmic playing field.
 
-I built this because the entry-level search landscape is highly oversaturated with misleading listings. It is incredibly hard to balance your immediate operational needs with what is actually a strategic investment for your future career. Having a parser helps because let us be real: job boards use AI, so why not have AI give you back the summary? 
+🔄 Unified Architectural Flow
+This system operates as a unified, full-stack recruitment defense pipeline. It bridges a reactive React frontend with a high-intelligence Express backend, designed to filter out staffing agency middle-men, underpaid roles, and tedious application portals.
 
-***
+Plaintext
+[Raw Job Listings Input]  ──>  [Ingestion Canvas & Security Rules]
+                                       │
+                                       ▼
+                         [Express Backend /api/parse-job]
+                         - Gemini 3.5 Flash Content Parsing
+                         - Anti-Middleman & Anti-Scam Rules
+                                       │
+                                       ▼
+                       [Interactive Results Table & Analytics]
+                       - Real-Time Risk Analysis
+                       - Status Pipeline Tracking (Listed, Applied, etc.)
+⚙️ Core Functional Modules
+A. Ingestion & Pre-Filtering (DataIngestionCanvas)
+Users paste raw job descriptions, unstructured listings, or batch lists into an interactive paste area. Before sending queries to the server, local scripts evaluate simple rules—validating experience limits, identifying potential salary mismatches, and confirming necessary data presence—to reduce server load and provide instant visual feedback.
 
-## 🧹 Product Positioning & State Architecture
+B. Intelligent Security Gatekeeping (/api/parse-job)
+When data is scanned, the client calls the backend API endpoint. A specialized configuration block utilizing Gemini 3.5 Flash acts as an automated security scanner:
 
-Unlike legacy career platforms that thrive on endless scrolling, visual clutter, and data harvesting loops, this system acts as a defensive framework for technical professionals. It shifts the workflow from reactive browsing into an isolated, variable-driven dashboard designed to level the algorithmic playing field.
+The Direct-Hire Gate: Identifies third-party staffing agencies (e.g., CyberCoders, Robert Half, Apex Systems) and flags or blocks them.
 
-This application is completely plug-and-play and available to use immediately upon launch. Users no longer need to deploy a code block on their own or manually configure a backend template. Anyone can open the published application interface, input their target parameters straight into the UI sidebars, and run a production-ready search immediately.
+Integrity Scan: Automatically detects "ghost" listings, anonymous/hidden employers, and roles failing to meet standard requirements.
 
-***
+Structured Normalization: The model parses unstructured text into a strict JSON payload containing health metrics and structured job pipeline arrays.
 
-## 👩🏻‍💻 How It Works
+C. Live Security Insights (AnalyticsDashboard)
+The dashboard reads calculated statistics from scanned listings and maps them to a modern data grid. Aesthetic metric cards display real-time calculations—total scanned positions, blocked listings, and valid direct-hire options—helping users visualize the direct-hire ratio of their active search pool.
 
-### 1. Zero-Friction Input & Parameter Locking
-Users interact purely with a clean, client-side dashboard interface. The application isolates parameters within absolute boundary rules:
-*   **Built for Quick Adjustments:** The filter parameters live in the visual interface, meaning users can swap out core targets, modify distance rules, or adjust the salary floor in seconds without breaking the system logic.
-*   **70% Semantic Match Recommendation Engine:** To break users out of the trap of searching the same two or three keywords, the system runs an alternate job title recommendation generator. It analyzes your target profile and automatically maps comparable positions based on a 70% or higher semantic accuracy overlap, uncovering valuable adjacent roles.
+D. Interactive Pipeline Tracking (PositionsTable)
+Approved positions populate the central table.
 
-### 2. Multi-Theme Customization
-To keep your daily workflow engaging during an active search, the workspace layout is fully interactive and customizable via real-time theme toggles:
-*   **Minimal:** A clean, zero-distraction framework using a gray, white, and black base accented by crisp red highlights.
-*   **Cyber (Default):** A highly distinct, terminal-style security workspace running custom Data Stream Matrix tokens (`#0b0f16` deep bases, `#151a24` cards, `#00e5ff` neon highlights, and `#00c896` secondary accents) utilizing a 'PT Mono' typography layer for maximum aesthetic separation from the minimal mode.
-*   **Dollhouse:** A highly styled interface variant utilizing playful palette choices reminiscent of a classic toy dreamhouse.
-*   **Paint Splatter:** An expressive style profile channeling a mid-2010s colorful, high-contrast grunge motif.
+Risk Identification: Warning flags (e.g., "Third-Party Agency," "Low Salary Floor") are displayed prominently.
 
-### 3. Career Mapping Rules & Automated Bridge
-*   **Noise Minimization:** The system automatically drops highly specific or bureaucratic titles from the results layout if they yield zero viable data matching your targets.
-*   **Technical Bridging:** If an entry-level position fits the experience threshold but directly aligns with your multi-year Data Engineer goal (such as Analytics Engineering or Data Integration roles), the engine automatically includes it with a clean, single-sentence breakdown explaining how it acts as a pipeline bridge.
+Pipeline Control: Users transition positions dynamically across lifecycle steps (Listed → Applied → Interviewing → Offer Received).
 
-***
+🎨 UI & UX Design
+Extended Canvas Layout: The interface utilizes a widescreen, responsive layout, offering an unobstructed visual space for reading dense job descriptions and scanning warnings.
 
-## 🚧 App Limits & Privacy Boundaries
+Elegant Slate Aesthetic: The workspace features a clean, high-contrast Slate and Charcoal color theme. Beautiful typography pairings and monospace status indicators create a professional, low-distraction workspace that avoids generic blue and navy palettes.
 
-To bypass expensive paywalls, eliminate tracking cookies, and protect your private data, three strict gatekeeping rules are hardcoded into the pipeline:
-*   **Strict Quality & Source Limits:** The engine acts as an explicit security gatekeeper. It completely screens out third-party IT staffing agencies, recruiting firms, and predatory placement mills. If a listing originates from a sourcing pipeline or placement network (like Robert Half or CyberCoders), or demands upfront training fees, it is instantly omitted.
-*   **Hard Experience Caps:** The system runs a ruthless evaluation scan on the fine print. Any position demanding more than 1 year of experience is immediately thrown out, ensuring you only evaluate true entry-level benchmarks.
-*   **Live Web Grounding:** The architecture leverages live public web searches grounded directly into LinkedIn, Indeed, BuiltIn Boston, and Dice. It uses specialized site-scoping syntax to pull real-time data while bypassing background scraping loops that compromise your local environment.
+☰ The Tech Stack
+Frontend: React, Tailwind CSS, Vite.
 
-***
+Backend: Node.js, Express.
 
-## ☰ The Tech Stack
+Parsing Intelligence: Google Gemini API (Gemini 3.5 Flash).
 
-*   **Where It Lives:** Deployed completely within structured markdown system environments, allowing anyone to instantly fork, paste, and run the configuration natively.
-*   **The Parsing Engine:** Powered by Google AI Studio, utilizing isolated rule schemas that map raw text blocks into uniform reporting variables without needing natural language conversational context.
-*   **The Sync Layer:** Formatted with a direct Google Sheets and Excel output layout matrix (`Copy Sheets-Ready TSV`), enabling swift data transition back into personal tracking ledgers.
+Sync Layer: Copy-to-clipboard TSV Matrix for seamless transition to personal tracking ledgers.
 
-***
+🗪 Feedback & Iteration
+This project is a living tool. Because most platforms lock functionality behind paywalls, this app keeps the utility open and user-driven.
 
-## 🗪 What's Next (The Feedback & Iteration Plan)
-
-This project is built to be a living tool that anyone can launch, customize, and use to protect their job search in real-time. Because most platforms lock their functionality behind paywalls, this app keeps the utility open and directly driven by user input.
-*   **User Profile Profiles:** Expanding the local state storage so users can save and toggle between multiple distinct search profiles without losing their active funnel analytics.
-*   **Active Response Funnel:** Includes a dedicated **Share Feedback Form** button pinned directly to the top header of the application interface. This links to an automated response tracking dashboard, allowing the platform to be continuously refined, patched, and optimized based on real-world user feedback.
+Share Feedback Form — Use this link to help refine the engine, report false negatives, or suggest new anti-spam rules.
