@@ -2,7 +2,7 @@
 
 Asynchronous, Zero-Noise Market Gatekeeper & Priority Pipeline
 
-* **Live Application Link:** [Launch Job Search Guard](https://github.com/your-username/your-repo-link](https://ais-pre-pnnooqviibfaeziylrpywy-596413656493.us-west2.run.app/)
+* **Live Application Link:** [Launch Job Search Guard](https://ais-pre-pnnooqviibfaeziylrpywy-596413656493.us-west2.run.app/)
 * **Status:** Live Production | Monitored via continuous user-ingestion validation
 
 ---
