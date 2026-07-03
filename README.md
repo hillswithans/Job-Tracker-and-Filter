@@ -1,119 +1,342 @@
-# Job Tracker & Search Shield (My Job Search Guard)
+# Job Tracker & Search Shield
+### AI-Powered Job Search Filtering & Application Pipeline
 
-Asynchronous, Zero-Noise Market Gatekeeper & Priority Pipeline
+![Status](https://img.shields.io/badge/Status-Live-success)
+![React](https://img.shields.io/badge/Frontend-React-61DAFB)
+![Node.js](https://img.shields.io/badge/Backend-Node.js-339933)
+![Express](https://img.shields.io/badge/API-Express-000000)
+![Gemini](https://img.shields.io/badge/AI-Google_Gemini_3.5_Flash-4285F4)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
-* **Live Application Link:** [Launch Job Search Guard](https://ais-pre-pnnooqviibfaeziylrpywy-596413656493.us-west2.run.app/)
-* **Status:** Live Production | Monitored via continuous user-ingestion validation
+**Live Application:** https://ais-pre-pnnooqviibfaeziylrpywy-596413656493.us-west2.run.app/
 
-🧐 The Vision: Anti-Noise Recruitment
+---
 
-When job searching, the entry-level landscape is often oversaturated with misleading listings, predatory "AI farming," and staffing agency spam. I built Job Search Guard to shift the workflow from reactive, time-consuming browsing to an isolated, variable-driven dashboard. This system acts as a defensive framework for technical professionals to level the algorithmic playing field.
+## Overview
 
-🗺️ Unified Architectural Flow
+Job Tracker & Search Shield is an AI-assisted recruitment workflow designed to reduce the noise of modern job searching.
 
-This system operates as a unified, full-stack recruitment defense pipeline. It bridges a reactive React frontend with a high-intelligence Express backend, designed to filter out staffing agency middle-men, underpaid roles, and tedious application portals.
+Rather than spending hours sorting through misleading listings, staffing agency reposts, ghost jobs, and underqualified opportunities, users can paste raw job descriptions into the application where they are automatically analyzed, filtered, normalized, and organized into a structured application pipeline.
 
-[Plaintext Raw Job Listings Input]
-               │
-               ▼
- [Ingestion Canvas & Security Rules]
-               │
-               ▼
-   [Express Backend /api/parse-job] ──► Gemini 3.5 Flash Content Parsing
-               │                       (Anti-Middleman & Anti-Scam)
-               ▼
-[Interactive Results Table & Analytics] ──► Real-Time Risk Analysis & Status Pipeline Tracking
+The goal isn't simply finding more jobs—it's finding better ones while eliminating unnecessary manual review.
 
-⚙️ Core Functional Modules
+---
 
-A. Ingestion & Pre-Filtering (DataIngestionCanvas)
+# The Problem
 
-Users paste raw job descriptions, unstructured listings, or batch lists into an interactive paste area. Before sending queries to the server, local scripts evaluate simple rules—validating experience limits, identifying potential salary mismatches, and confirming necessary data presence—to reduce server load and provide instant visual feedback.
+Searching for entry-level technical positions has become increasingly inefficient.
 
-🛠️ Dynamic 10-Board Ingestion Engine
+Common issues include:
 
-To resolve the rigid legacy layout that locked users into exactly 5 static, hardcoded HTML blocks, the canvas features a high-density, reusable, and responsive <Card> component mapped dynamically over a global configuration matrix:
+- Staffing agencies masquerading as direct employers
+- Ghost listings and AI-generated spam
+- Positions advertised as "entry level" requiring multiple years of experience
+- Low salary postings hidden beneath vague descriptions
+- Hours spent manually comparing listings across multiple job boards
 
-const ALL_BOARDS = [
-  'LinkedIn', 'Dice', 'Indeed', 'Wellfound', 'Built In', 
-  'CollegeGrad', 'Handshake', 'FlexJobs', 'ZipRecruiter', 'Google Jobs'];
+Traditional job boards encourage endless scrolling.
 
-Interactive State Binding: Styled each card with dynamic states ("Active / Shield Online" vs "Inactive / Shield Offline") paired with custom icons, customized details, and specialized visual highlights corresponding perfectly to whether they are currently activated.
+Job Tracker & Search Shield instead treats job searching like a data pipeline.
 
-Theme Integration: Card states conform seamlessly across all 4 system presets: Minimalist, Cyber, Dollhouse, and Splatter.
+---
 
-B. Intelligent Security Gatekeeping (/api/parse-job)
+# The Solution
 
-When data is scanned, the client calls the backend API endpoint. A specialized configuration block utilizing Gemini 3.5 Flash acts as an automated security scanner:
-The Direct-Hire Gate: Identifies third-party staffing agencies (e.g., CyberCoders, Robert Half, Apex Systems) and flags or blocks them.
-Integracy Scan: Automatically detects "ghost" listings, anonymous/hidden employers, and roles failing to meet standard requirements.
-Structured Normalization: The model parses unstructured text into a strict JSON payload containing health metrics and structured job pipeline arrays.
+The application acts as a filtering layer between raw job listings and the user's application process.
 
-C. Live Security Insights (AnalyticsDashboard)
+Instead of manually evaluating every posting, users submit unstructured listings which are automatically processed through an AI-powered validation workflow.
 
-The dashboard reads calculated statistics from scanned listings and maps them to a modern data grid. Aesthetic metric cards display real-time calculations—total scanned positions, blocked listings, and valid direct-hire options—helping users visualize the direct-hire ratio of their active search pool.
+Listings are evaluated for:
 
-D. Interactive Pipeline Tracking (PositionsTable)
+- Direct-hire vs. third-party recruiter
+- Experience requirements
+- Salary thresholds
+- Employer transparency
+- Potential scam indicators
+- Structured job metadata
 
-Approved positions populate the central table.
-Risk Identification: Warning flags (e.g., "Third-Party Agency", "Low Salary Floor") are displayed prominently.
-Pipeline Control: Users transition positions dynamically across lifecycle steps (Listed ➔ Applied ➔ Interviewing ➔ Offer Received).
+Approved positions are then added to a searchable application tracker with analytics and status management.
 
-🎨 UI & UX Design Themes
+---
 
-Global Typography Normalization
+# Architecture
 
-Declared a highly legible, neutral typography standard across all interfaces to ensure consistent, premium rendering across all user platforms and operational body copy:
-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+```
+Raw Job Listings
+        │
+        ▼
+Data Ingestion Canvas
+(Client Validation)
+        │
+        ▼
+Express Backend
+/api/parse-job
+        │
+        ▼
+Google Gemini 3.5 Flash
+Content Parsing
+        │
+        ▼
+Structured JSON
+Normalization
+        │
+        ▼
+Risk Analysis
+&
+Quality Filtering
+        │
+        ▼
+Application Pipeline
+Analytics Dashboard
+```
 
-System Presets Matrix
+---
 
-The application layout shifts dynamically across 4 core design ecosystem presets:
-Theme Preset | Card Borders & Frames | Background Architecture | Focal Highlights & Accents
-Minimalist | Clean monochrome white-on-black borders | Solid white-on-black canvas | Sharp, high-contrast boundaries
-Cyber | Glowing cyan borders | Dark technical backdrops | Radial blue-cyan glow fields
-Dollhouse | Thick Rose Gold borders (#D8A7B1) | 3-way pastel warm gradient backdrop | Heavy coral 3D flat shadows
-Splatter | Kinetic neon green border-box outlines | SVG noise-grain texturing layer | High-octane violet-cyan gradients
+# Features
 
-Deep Dive: Hard Theme Mutations
+## AI-Powered Job Parsing
 
-1. Splatter (Neon Grunge / Oasis Rebrand) Overhaul
+Paste raw job descriptions from virtually any source.
 
-A high-energy, raw, graffiti-inspired technical workspace.
-Typography Infusion: Configured a high-energy artistic typeface stack including 'Permanent Marker', 'Nosifer', and 'Sedgwick Ave Display' exclusively mapped to headings (h1, h2, h3, h4), establishing a gritty, street-style graffiti visual hierarchy.
-Main Header Drip Effect: Refactored the dashboard header to sport an immersive multi-step linear gradient mimicking a paint drip flowing down into deep midnight charcoal: linear-gradient(180deg, #0D0C16 0%, #0D0C16 70%, #7b2cbf 75%, #00b4d8 83%, #39FF14 91%, #05050A 100%)
+The backend converts unstructured text into normalized structured data that can be analyzed and tracked throughout the application.
 
-Tactile Texture Layering: Applied a micro-grain noise overlay integrated dynamically via high-performance inline SVG filters combined with dual-tone dark purple backgrounds to provide cards with physical substance: background-image: url("data:image/svg+xml,..."), linear-gradient(135deg, rgba(13,12,22,0.95), rgba(24,14,48,0.95))
+---
 
-Bouncing Interaction Physics: Programmed custom micro-animations utilizing spring-like cubic-beziers so buttons rise and cast an electric cyan neon glow (rgba(0, 180, 216, 0.5)) on hover, and press down realistically on active click.
-Consistent Accents: Integrated focus outlines with high-visibility neon-lime glow (#39FF14) and retrofitted custom dual-gradient scrollbars (Violet to Cyan).
+## Direct-Hire Gatekeeping
 
-2. Dollhouse (Barbie Dreamhouse) Refining
+Automatically identifies and flags:
 
-A playful, high-contrast structural overhaul mimicking a physical playset.
-Background Vignette: Swapped the flat pastel pink background with a soft fixed gradient utilizing three warm tones: linear-gradient(135deg, #FFB7C5, #E6E6FA, #FDFD96)
+- Staffing agencies
+- Third-party recruiters
+- Placement firms
+- Anonymous employers
+- Potential ghost listings
 
-Toy Molding Shadow: Outfitted card modules with a solid, high-contrast offset 3D shadow block bordered by soft rose-gold lines mimicking physical plastic frames: box-shadow: 10px 10px 0px 0px #FF9AA2; border: 3px solid #D8A7B1;
+Designed to reduce time spent applying to intermediary recruiters.
 
-Miniature Scale Hover: Programmed a subtle physical "press down" scale transition on buttons to replicate pressing a mechanical toy button: transform: scale(0.95);
+---
 
-Display Elements: Playful typographic selections (Pacifico, 'Dancing Script') applied to top-level headers alongside miniature scale-down click-triggers on hover.
+## Salary & Experience Validation
 
-🛠️ The Tech Stack
+Listings can be filtered according to configurable requirements including:
 
-Frontend: React, Tailwind CSS, Vite
-Backend: Node.js, Express
-Parsing Intelligence: Google Gemini API (Gemini 3.5 Flash)
-Sync Layer: Copy-to-clipboard TSV Matrix for seamless transition to personal tracking ledgers
+- Minimum salary
+- Maximum experience threshold
+- Required skills
+- Entry-level eligibility
 
-❌ Eliminations & Purges
+---
 
-To preserve high rendering speeds and strict architectural clarity, a complete codebase purge was executed:
-Purged Static Cards: Completely deleted all 5 legacy, hardcoded HTML blocks for Google, LinkedIn, Indeed, ZipRecruiter, and Wellfound cards from DataIngestionCanvas.tsx to clear out outdated layouts.
-Eradicated Inline Typography Rules: Stripped away inconsistent inline header classes throughout individual views, centralizing all custom thematic styling inside target container-scoped selectors within the global stylesheet.
-Flat Layout Depreciation: Standard solid color backgrounds within themed views were completely phased out, upgraded uniformly to vibrant gradients, grain textures, and soft vignette offsets.
+## Application Pipeline
 
-📣 Feedback & Iteration
+Approved positions move through a complete workflow:
 
-This project is a living tool. Because most platforms lock functionality behind paywalls, this app keeps the utility open and user-driven.
-👉 Share Feedback Form — Use this link to help refine the engine, report false negatives, or suggest new anti-spam rules.
+```
+Listed
+    ↓
+Applied
+    ↓
+Interviewing
+    ↓
+Offer
+```
+
+Each listing maintains its own status throughout the hiring process.
+
+---
+
+## Analytics Dashboard
+
+Real-time metrics provide visibility into the current search including:
+
+- Total listings scanned
+- Approved positions
+- Blocked listings
+- Direct-hire ratio
+- Pipeline progress
+
+---
+
+## Dynamic Multi-Board Ingestion
+
+Instead of hardcoding individual job boards, the interface generates reusable cards from a centralized configuration.
+
+Supported sources include:
+
+- LinkedIn
+- Indeed
+- Dice
+- Wellfound
+- Built In
+- CollegeGrad
+- Handshake
+- FlexJobs
+- ZipRecruiter
+- Google Jobs
+
+This architecture makes adding or removing job boards significantly easier while keeping the interface maintainable.
+
+---
+
+# AI Workflow
+
+When a user submits a listing, the application performs the following sequence:
+
+1. Client-side validation
+2. Backend API request
+3. Gemini content parsing
+4. JSON normalization
+5. Risk assessment
+6. Experience validation
+7. Salary validation
+8. Direct-hire verification
+9. Dashboard update
+10. Pipeline insertion
+
+---
+
+# Themes
+
+The application includes four interchangeable visual themes while preserving identical functionality.
+
+| Theme | Design |
+|-------|--------|
+| Minimalist | High-contrast monochrome interface |
+| Cyber | Neon blue technical aesthetic |
+| Dollhouse | Playful pastel interface inspired by toy packaging |
+| Splatter | Graffiti-inspired neon grunge aesthetic |
+
+Each theme updates typography, colors, borders, shadows, backgrounds, and interaction effects without changing application behavior.
+
+---
+
+# Tech Stack
+
+## Frontend
+
+- React
+- Vite
+- Tailwind CSS
+
+## Backend
+
+- Node.js
+- Express
+
+## AI
+
+- Google Gemini 3.5 Flash
+
+## Data
+
+- Structured JSON normalization
+- Clipboard TSV export
+
+---
+
+# Engineering Decisions
+
+Several architectural changes were made during development to improve scalability and maintainability.
+
+### Dynamic Component Rendering
+
+Legacy hardcoded ingestion cards were replaced with reusable components generated from a centralized configuration array.
+
+This reduced duplicate code and made new job boards easy to support.
+
+---
+
+### Centralized Theme Architecture
+
+Rather than styling individual components independently, global theme rules control typography, color palettes, shadows, and interaction styles across the application.
+
+---
+
+### Structured AI Responses
+
+Rather than relying on conversational AI output, Gemini is instructed to produce normalized JSON suitable for downstream processing.
+
+This enables:
+
+- analytics
+- filtering
+- pipeline tracking
+- future persistence
+
+without requiring additional parsing.
+
+---
+
+# Project Evolution
+
+The project began as a simple AI prompt intended to automate weekly job searches.
+
+As development progressed, it evolved into a complete workflow that:
+
+- filters recruitment spam
+- evaluates listing quality
+- tracks applications
+- analyzes hiring trends
+- supports configurable search criteria
+
+Instead of acting as a chatbot, the application functions as an intelligent gatekeeper between job boards and the application process.
+
+---
+
+# Future Improvements
+
+Planned enhancements include:
+
+- Persistent database storage
+- User authentication
+- Saved searches
+- Resume matching
+- Historical hiring trend analysis
+- Browser extension support
+- Automated job ingestion
+- Company reputation scoring
+- AI-powered resume tailoring
+
+---
+
+# Lessons Learned
+
+This project reinforced several engineering concepts including:
+
+- Prompt engineering
+- Full-stack API integration
+- AI-assisted data normalization
+- Reusable React component architecture
+- State management
+- Configuration-driven UI design
+- Human-in-the-loop AI workflows
+
+---
+
+# Running Locally
+
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+
+cd YOUR_REPO
+
+npm install
+
+npm run dev
+```
+
+---
+
+# Feedback
+
+Job Tracker & Search Shield is an evolving project.
+
+If you discover false positives, recruiter patterns, or ideas for improving the filtering engine, feedback is always welcome.
+
+---
+
+## Author
+
+**Samantha Hills**
+
+Built as an exploration of AI-assisted workflow automation, structured data processing, and practical full-stack application development.
