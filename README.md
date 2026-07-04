@@ -2,40 +2,43 @@
 
 ### AI-Powered Job Search Filtering & Application Pipeline
 
-**Status:** Live  
-**Live Application:** https://ais-pre-pnnooqviibfaeziylrpywy-596413656493.us-west2.run.app/
+**Repository:** https://github.com/hillswithans/Job-Tracker-and-Filter  
+**Live Application:** https://ais-pre-pnnooqviibfaeziylrpywy-596413656493.us-west2.run.app/  
+**Status:** Live
 
 ---
 
 ## Overview
 
-Job Tracker & Search Shield is an AI-assisted recruitment workflow designed to reduce the noise of modern job searching.
+Job Tracker & Search Shield is an AI-assisted job search tool that reduces the noise in modern recruiting platforms.
 
-Instead of spending hours sorting through spam listings, staffing agency reposts, ghost jobs, and “entry-level” roles that require senior-level experience, users paste raw job descriptions into the system.
+Instead of manually sorting through spam listings, recruiter posts, ghost jobs, and misleading “entry-level” roles, users paste raw job descriptions into the system.
 
-The app parses, cleans, filters, and structures them into a usable application pipeline.
+The app parses, filters, and structures them into a usable application pipeline.
 
-The goal isn’t more jobs. It’s better signal, less noise.
+The goal is simple: better job signals, less manual effort.
 
 ---
 
 ## The Problem
 
-Job searching for entry-level technical roles has become inefficient and repetitive.
+Job searching for technical roles has become inefficient.
+
+Common issues:
 
 - Staffing agencies posing as direct employers  
-- Ghost listings and AI-generated spam  
-- “Entry-level” roles requiring multiple years of experience  
-- Hidden or vague salary information  
-- Endless manual comparison across job boards  
+- Ghost or duplicate listings  
+- “Entry-level” roles requiring mid-level experience  
+- Hidden or unclear salary ranges  
+- Time spent manually comparing listings across platforms  
 
-Traditional job boards reward scrolling, not clarity.
+Traditional job boards reward volume, not clarity.
 
 ---
 
 ## The Solution
 
-This system acts as a filtering layer between raw job listings and the application process.
+This system acts as a filtering layer between job listings and the application process.
 
 Users submit unstructured job posts. The system evaluates them for:
 
@@ -46,86 +49,103 @@ Users submit unstructured job posts. The system evaluates them for:
 - Scam or low-quality signals  
 - Structured metadata extraction  
 
-Approved roles are placed into a trackable pipeline instead of being lost in tabs or bookmarks.
+Approved jobs are stored in a trackable application pipeline.
 
 ---
 
 ## Architecture
 
 Raw Job Listings  
-→ Ingestion Canvas (client-side validation)  
-→ Express backend (/api/parse-job)  
+→ Client-side validation  
+→ Express API (`/api/parse-job`)  
 → Google Gemini 3.5 Flash  
-→ Structured JSON normalization  
-→ Risk and quality filtering  
-→ Application pipeline dashboard  
+→ JSON normalization  
+→ Risk + quality filtering  
+→ Application dashboard  
 
 ---
 
 ## Features
 
-### AI-Powered Job Parsing  
-Paste any job post. It becomes structured, searchable data.
+### AI Job Parsing
+Converts raw job posts into structured, searchable data.
 
-### Direct-Hire Filtering  
-Flags staffing agencies, recruiters, and third-party listings.
+### Direct-Hire Filtering
+Identifies recruiters, staffing agencies, and indirect listings.
 
-### Salary & Experience Validation  
-Filters based on thresholds, skills, and realism checks.
+### Salary & Experience Validation
+Filters based on:
 
-### Application Pipeline  
+- Salary thresholds  
+- Experience mismatch  
+- Skill requirements  
+- Entry-level eligibility  
+
+### Application Pipeline
+Tracks job status:
+
 Listed → Applied → Interviewing → Offer
 
-### Analytics Dashboard  
-Tracks scans, approvals, rejection rate, and pipeline progress.
+### Analytics Dashboard
+Provides visibility into:
 
-### Multi-Board Ingestion  
-Supports LinkedIn, Indeed, Dice, Wellfound, Built In, CollegeGrad, Handshake, FlexJobs, ZipRecruiter, Google Jobs.
+- Total jobs processed  
+- Approval rate  
+- Rejection rate  
+- Pipeline progress  
+
+### Multi-Board Support
+Supports ingestion from:
+
+LinkedIn, Indeed, Dice, Wellfound, Built In, CollegeGrad, Handshake, FlexJobs, ZipRecruiter, Google Jobs
 
 ---
 
 ## AI Workflow
 
-1. Client validation  
-2. API request  
-3. Gemini parsing  
-4. JSON normalization  
-5. Risk scoring  
-6. Experience validation  
+1. Input job listing  
+2. Client validation  
+3. API request  
+4. Gemini parsing  
+5. JSON normalization  
+6. Risk scoring  
 7. Salary validation  
-8. Direct-hire check  
-9. Dashboard update  
-10. Pipeline insertion  
+8. Experience validation  
+9. Direct-hire detection  
+10. Pipeline update  
 
 ---
 
 ## Themes
 
-- Minimalist: high contrast monochrome  
-- Cyber: neon blue technical style  
-- Dollhouse: soft pastel UI  
-- Splatter: graffiti-inspired high contrast system  
+- Minimalist — monochrome, high contrast  
+- Cyber — neon blue technical UI  
+- Dollhouse — soft pastel interface  
+- Splatter — graffiti-inspired high contrast design  
 
-Each theme changes visuals only. Core logic stays identical.
+Themes only affect appearance, not logic.
+
+---
+
+## UI Language Improvements
+
+Earlier system language was replaced with clearer user-facing terms.
+
+Examples:
+
+- “Export to Spreadsheet” instead of backend sync language  
+- “Match Your Criteria” instead of validation pipeline terminology  
+- “Hidden Bad Fits” instead of risk scoring labels  
 
 ---
 
-## UI Language & Design Updates
-
-### Removing AI jargon from the interface
-
-- Export to Spreadsheet (instead of internal sync terms)  
-- Match Your Criteria (instead of validation pipelines)  
-- Hidden Bad Fits (instead of risk scoring abstractions)  
-
----
+## Design System Updates
 
 ### Dollhouse Theme
-
-- Fixed spacing to prevent shadow overlap  
-- Rounded typography (Quicksand / Nunito style)  
-- Removed sparkle clutter  
-- Icon system:
+- Fixed spacing issues between components  
+- Improved typography (rounded, readable fonts)  
+- Removed excessive decorative icons  
+- Structured status icons:
 
 Listed → 🌸  
 Applied → 🎀  
@@ -137,12 +157,13 @@ Strong Match → 🧸
 ---
 
 ### Splatter Theme
+- Stronger typography hierarchy  
+- Clear separation between headers and data  
+- Fonts:
+  - Headers: Sedgwick Ave Display  
+  - Body: JetBrains Mono  
 
-- Header font: Sedgwick Ave Display  
-- Body font: JetBrains Mono  
-- High contrast separation between headers and data  
-
-Icon system:
+Status icons:
 
 Listed → 🎨  
 Applied → 🛹  
@@ -155,45 +176,45 @@ Strong Match → 🧱
 
 ## Engineering Decisions
 
-- Dynamic UI components replace hardcoded cards  
-- Centralized theme system controls styling globally  
-- Gemini outputs structured JSON only  
-- All logic depends on normalized data, not raw text  
+- Dynamic UI components instead of hardcoded cards  
+- Centralized theme system  
+- Structured JSON output from AI (no freeform text)  
+- All downstream logic depends on normalized data  
 
 ---
 
 ## Project Evolution
 
-Originally a simple job search helper.
+Originally built as a job search helper.
 
-Now a system that:
+It evolved into a system that:
 
 - filters recruiter noise  
 - evaluates job quality  
-- tracks application state  
-- enforces consistency across job boards  
-- turns job searching into a structured workflow  
+- tracks application states  
+- standardizes job board inputs  
+- turns job search into a structured pipeline  
 
 ---
 
 ## Future Improvements
 
 - Persistent database  
-- Authentication  
+- User authentication  
 - Saved searches  
 - Resume matching  
-- Hiring trend analytics  
+- Hiring analytics  
 - Browser extension ingestion  
 - Company reputation scoring  
-- AI resume tailoring  
+- Resume tailoring automation  
 
 ---
 
 ## Running Locally
 
 ```bash
-git clone https://github.com/hillswithans/Job-Tracker-and-Filter
-cd YOUR_REPO
+git clone https://github.com/hillswithans/Job-Tracker-and-Filter.git
+cd Job-Tracker-and-Filter
 npm install
 npm run dev
 ```
