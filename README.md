@@ -192,7 +192,7 @@ Now a system that:
 ## Running Locally
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git clone https://github.com/hillswithans/Job-Tracker-and-Filter
 cd YOUR_REPO
 npm install
 npm run dev
