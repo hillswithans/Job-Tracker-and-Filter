@@ -69,7 +69,11 @@ Filters based on salary thresholds, experience mismatch, skill requirements, and
 Flags whether a listing requires a cover letter or a portal account signup, before you invest time customizing anything.
 
 **Company Reputation Check**
-Surfaces reputation signals (e.g. Glassdoor-style rating) for a company before you apply, so a bad employer doesn't cost you an application.
+Surfaces reputation signals for a company before you apply, so a bad employer doesn't cost you an application. Two ways to get a rating:
+- **AI Verification** — paste a Glassdoor/review link and the app runs a live, search-grounded Gemini scan for the company's aggregate rating, recent layoffs, and notable complaints, returning a rating plus a short summary.
+- **Manual Entry** — type in a rating (1.0–5.0) you found yourself, if you'd rather not trigger a live scan.
+
+Listings get a "Highly Rated" or "Low Rating" badge based on the result.
 
 **Application Pipeline**
 Tracks job status: Listed → Applied → Interviewing → Offer.
@@ -77,8 +81,11 @@ Tracks job status: Listed → Applied → Interviewing → Offer.
 **Analytics Dashboard**
 Provides visibility into total jobs processed, approval rate, rejection rate, and pipeline progress.
 
-**Board Recognition**
-The app doesn't fetch listings from job boards on its own — there's no public search API for that on any major board, and scraping them isn't something this tool does. Instead, it recognizes board names mentioned in what you paste (LinkedIn, Indeed, Dice, Wellfound, Built In, CollegeGrad, Handshake, FlexJobs, ZipRecruiter, Google Jobs), and flags when you've pasted the same role from more than one source, which is a decent signal it's a real, actively-hiring listing rather than a stale single post.
+**Board Recognition & Mapping**
+The app doesn't fetch listings from job boards on its own — there's no public search API for that on any major board, and scraping them isn't something this tool does. Instead, it recognizes board names mentioned in what you paste (LinkedIn, Indeed, Dice, Wellfound, Built In, CollegeGrad, Handshake, FlexJobs, ZipRecruiter, Google Jobs), and flags when you've pasted the same role from more than one source, which is a decent signal it's a real, actively-hiring listing rather than a stale single post. The UI is explicit that this is mapping and recognition of what you paste, not background crawling or querying of job boards.
+
+**Location Matching**
+Filters on the location text you paste against your target location (e.g. Remote, Hybrid, a city name). This is a keyword match, not live geocoding or a real distance calculation — a "12 miles away" style number would be fabricated, so the app doesn't show one.
 
 ## AI Workflow
 
@@ -132,7 +139,7 @@ Earlier system language was replaced with clearer user-facing terms:
 - Centralized theme system
 - Structured JSON output from AI (no freeform text)
 - All downstream logic depends on normalized data
-- Distance/location matching is text-based (location string and remote-status matching), not a live geocoding calculation, unless a geocoding API is explicitly wired in
+- Location matching is text-based (location string and remote-status matching); the earlier simulated distance estimate (based on company name and title length) has been removed entirely
 
 ## Project Evolution
 
@@ -140,7 +147,7 @@ Originally built as a job search helper. It evolved into a system that:
 - Filters recruiter noise
 - Evaluates job quality
 - Flags cover letter and account requirements up front
-- Surfaces company reputation before you apply
+- Surfaces company reputation before you apply, via live search-grounded AI lookup or manual entry
 - Tracks application states
 - Recognizes job board sources from pasted text
 - Turns job search into a structured pipeline
@@ -153,6 +160,5 @@ Originally built as a job search helper. It evolved into a system that:
 - Resume matching
 - Hiring analytics
 - Browser extension ingestion (would let listings be captured while browsing, instead of copy-pasted)
-- Real geocoding for distance filtering
-- Live company reputation lookup via AI + search grounding
+- Real geocoding for a genuine distance/mile-radius filter (current version is text-match only)
 - Resume tailoring automation
