@@ -1,164 +1,478 @@
+````md
 # Job Tracker & Search Shield
-AI-Powered Job Search Filtering & Application Pipeline
 
-Repository: https://github.com/hillswithans/Job-Tracker-and-Filter
-Live Application: https://ais-pre-pnnooqviibfaeziylrpywy-596413656493.us-west2.run.app/
-Status: Live
+**An AI-powered tool that helps you decide which jobs are worth applying to.**
 
-## Overview
+**Live App:**  
+https://ais-pre-pnnooqviibfaeziylrpywy-596413656493.us-west2.run.app/
 
-Job Tracker & Search Shield is an AI-assisted job search tool that reduces the noise in modern recruiting platforms.
+**GitHub Repository:**  
+https://github.com/hillswithans/Job-Tracker-and-Filter
 
-Instead of manually sorting through spam listings, recruiter posts, ghost jobs, and misleading "entry-level" roles, users paste raw job descriptions into the system. The app parses, filters, and structures them into a usable application pipeline.
+**Status:** Live
 
-The goal is simple: better job signals, less manual effort, more real applications sent out per week instead of time lost to triage.
+---
 
-## The Problem
+## What It Does
 
-Job searching for technical roles has become inefficient.
+Job Tracker & Search Shield helps make job searching less annoying.
 
-Common issues:
-- Staffing agencies posing as direct employers
-- Ghost or duplicate listings
-- "Entry-level" roles requiring mid-level experience
-- Hidden or unclear salary ranges
-- Time spent manually comparing listings across platforms
-- Discovering a cover letter or account signup is required only after you've already customized a resume
-- No way to check a company's reputation before applying
+You paste a job listing into the app, and it checks the posting for things like:
 
-Traditional job boards reward volume, not clarity, and none of them offer a public search API that would let a tool like this pull listings on your behalf. Scraping them directly also runs into their terms of service. So this tool works the way a person actually job-hunts: you find listings across whatever sites you use, and you paste them in here to get the noise filtered out.
+- Salary
+- Experience requirements
+- Staffing agencies
+- Cover letter requirements
+- Account signup requirements
+- Company ratings
+- Location
+- Remote or hybrid options
 
-## The Solution
+The app then helps you decide whether to:
 
-This system acts as a filtering layer between job listings and the application process.
+- Apply now
+- Review the job later
+- Skip the job
 
-Users paste in unstructured job posts, one at a time or in a batch. The system evaluates them for:
-- Direct-hire vs. recruiter/staffing-agency source
-- Experience mismatch
-- Salary alignment
-- Whether a cover letter or account signup is required
-- Company reputation signals
-- Structured metadata extraction
+It also saves approved jobs in an application tracker.
 
-Approved jobs are stored in a trackable application pipeline, and the app suggests adjacent job titles worth searching for next based on what's already passing your filters.
+---
 
-## Architecture
+## Why I Built It
 
-```
-Raw job listing (pasted by user)
-→ Client-side validation
-→ Express API (/api/parse-job)
-→ Google Gemini
-→ JSON normalization
-→ Shield filtering (salary, experience, staffing-agency blacklist, title/location match)
-→ Application dashboard
-```
+Job searching takes too much time.
 
-## Features
+A listing might look promising at first, but then you discover:
 
-**AI Job Parsing**
-Converts raw job posts you paste in into structured, searchable data.
+- It is posted by a staffing agency
+- The salary is too low
+- The job says “entry-level” but wants five years of experience
+- You need to create another account
+- A cover letter is required
+- The company has poor reviews
+- The job is not actually remote
+- You already saw the same job somewhere else
 
-**Direct-Hire Filtering**
-Identifies recruiters, staffing agencies, and indirect listings from the text of what you paste.
+This app helps catch those problems before you spend time applying.
 
-**Salary & Experience Validation**
-Filters based on salary thresholds, experience mismatch, skill requirements, and entry-level eligibility.
+---
 
-**Cover Letter & Account Detection**
-Flags whether a listing requires a cover letter or a portal account signup, before you invest time customizing anything.
+## How It Works
 
-**Company Reputation Check**
-Surfaces reputation signals for a company before you apply, so a bad employer doesn't cost you an application. Two ways to get a rating:
-- **AI Verification** — paste a Glassdoor/review link and the app runs a live, search-grounded Gemini scan for the company's aggregate rating, recent layoffs, and notable complaints, returning a rating plus a short summary.
-- **Manual Entry** — type in a rating (1.0–5.0) you found yourself, if you'd rather not trigger a live scan.
+1. Paste a job description into the app.
+2. The app sends the job listing to Google Gemini.
+3. Gemini pulls out important details.
+4. The app compares the job against your preferences.
+5. The job is marked as a match, warning, or bad fit.
+6. Approved jobs can be added to your application tracker.
 
-Listings get a "Highly Rated" or "Low Rating" badge based on the result.
+---
 
-**Application Pipeline**
-Tracks job status: Listed → Applied → Interviewing → Offer.
+## What the App Checks
 
-**Analytics Dashboard**
-Provides visibility into total jobs processed, approval rate, rejection rate, and pipeline progress.
+### Salary
 
-**Board Recognition & Mapping**
-The app doesn't fetch listings from job boards on its own — there's no public search API for that on any major board, and scraping them isn't something this tool does. Instead, it recognizes board names mentioned in what you paste (LinkedIn, Indeed, Dice, Wellfound, Built In, CollegeGrad, Handshake, FlexJobs, ZipRecruiter, Google Jobs), and flags when you've pasted the same role from more than one source, which is a decent signal it's a real, actively-hiring listing rather than a stale single post. The UI is explicit that this is mapping and recognition of what you paste, not background crawling or querying of job boards.
+The app compares the listed salary to your minimum salary.
 
-**Location Matching**
-Filters on the location text you paste against your target location (e.g. Remote, Hybrid, a city name). This is a keyword match, not live geocoding or a real distance calculation — a "12 miles away" style number would be fabricated, so the app doesn't show one.
+It can warn you when:
 
-## AI Workflow
+- The salary is too low
+- No salary is listed
+- The salary range is unclear
 
-1. User pastes a job listing (or a batch of listings)
-2. Client-side validation
-3. API request
-4. Gemini parsing into structured fields
-5. JSON normalization
-6. Risk scoring
-7. Salary validation
-8. Experience validation
-9. Direct-hire detection
-10. Company reputation lookup
-11. Pipeline update
+---
+
+### Experience
+
+The app checks how many years of experience the job requires.
+
+This helps catch “entry-level” jobs that are not actually entry-level.
+
+---
+
+### Staffing Agencies
+
+The app looks for staffing agencies and third-party recruiters.
+
+This helps separate direct employer jobs from recruiter listings.
+
+---
+
+### Cover Letters
+
+The app checks whether a cover letter, writing sample, or extra application question is required.
+
+This helps you know how much time the application may take.
+
+---
+
+### Account Signups
+
+The app checks whether you may need to create an account on sites like:
+
+- Workday
+- Taleo
+- iCIMS
+- Greenhouse
+- Lever
+
+The job is not automatically rejected. The app simply warns you about the extra work.
+
+---
+
+### Company Reputation
+
+The app lets you check a company’s rating in two ways.
+
+#### AI Check
+
+You can paste a company review or Glassdoor link.
+
+Gemini searches for information about:
+
+- Company ratings
+- Recent layoffs
+- Common complaints
+- Workplace concerns
+
+#### Manual Rating
+
+You can also type in a company rating yourself.
+
+The app can label companies as:
+
+- Highly Rated
+- Low Rating
+- Unverified
+
+---
+
+### Location
+
+The app compares the location in the job listing to your preferred location.
+
+It can recognize words like:
+
+- Remote
+- Hybrid
+- On-site
+- Boston
+- Providence
+
+The app currently uses text matching.
+
+It does not calculate real driving distance or commute time.
+
+---
+
+### Job Board Sources
+
+The app can recognize job board names inside the text you paste.
+
+Supported job boards include:
+
+- LinkedIn
+- Indeed
+- Dice
+- Wellfound
+- Built In
+- CollegeGrad
+- Handshake
+- FlexJobs
+- ZipRecruiter
+- Google Jobs
+
+If the same job appears on more than one site, the app can flag it as a possible duplicate or cross-posted listing.
+
+The app does not scrape job boards or collect listings in the background.
+
+---
+
+## Job Results
+
+The app sorts jobs into three groups.
+
+### Strong Match
+
+The job matches your main preferences.
+
+This may mean:
+
+- The salary is acceptable
+- The experience requirement fits
+- The location matches
+- It appears to be direct hire
+
+**Recommended action:** Apply Now
+
+---
+
+### Review Later
+
+The job mostly matches, but there is something to check.
+
+For example:
+
+- No salary is listed
+- A cover letter is required
+- An account signup is required
+- The company rating is unknown
+- The experience requirement is slightly high
+
+**Recommended action:** Review Details
+
+---
+
+### Hidden Bad Fit
+
+The job does not match your main requirements.
+
+For example:
+
+- The salary is too low
+- The experience requirement is too high
+- It is posted by a staffing agency
+- The location does not match
+- The company rating is very low
+
+**Recommended action:** Skip
+
+---
+
+## Application Tracker
+
+Jobs that pass your filters can be tracked through the application process.
+
+```text
+Listed → Applied → Interviewing → Offer
+````
+
+Jobs can also be marked as rejected.
+
+---
+
+## Dashboard
+
+The dashboard shows:
+
+* Total jobs checked
+* Jobs approved
+* Jobs rejected
+* Applications sent
+* Interviews
+* Offers
+* Approval rate
+* Rejection rate
+
+This helps you see how your job search is going without building another spreadsheet from scratch.
+
+---
+
+## Search Tools
+
+The app can help prepare searches for different job boards.
+
+You choose:
+
+* Job title
+* Location
+* Job boards
+
+The app can then open searches for sites like LinkedIn, Indeed, Dice, and Google Jobs.
+
+It can also add staffing agency names to the search exclusions when supported.
+
+The app opens the searches in your browser.
+
+It does not crawl or scrape job boards.
+
+---
+
+## Suggested Job Titles
+
+The app can suggest similar job titles based on jobs that match your filters.
+
+For example:
+
+* Data Analyst
+* Reporting Analyst
+* Business Intelligence Analyst
+* Operations Analyst
+* Data Quality Analyst
+* Junior Analytics Engineer
+
+This can help you find roles you may not have searched for yet.
+
+---
+
+## Spreadsheet Export
+
+You can export your job data to a spreadsheet.
+
+This makes it easier to save, sort, or review your job search outside the app.
+
+---
 
 ## Themes
 
-- **Minimalist** — monochrome, high contrast
-- **Cyber** — neon blue technical UI
-- **Dollhouse** — soft pastel interface
-- **Splatter** — graffiti-inspired high contrast design
+The app includes four visual themes.
 
-Themes only affect appearance, not logic.
+### Minimalist
 
-## UI Language Improvements
+A simple black-and-white design.
 
-Earlier system language was replaced with clearer user-facing terms:
-- "Export to Spreadsheet" instead of backend sync language
-- "Match Your Criteria" instead of validation pipeline terminology
-- "Hidden Bad Fits" instead of risk scoring labels
+### Cyber
 
-## Design System Updates
+A neon blue technical design.
 
+### Dollhouse
 
-**Dollhouse Theme**
-- Fixed spacing issues between components
-- Improved typography (rounded, readable fonts)
-- Removed excessive decorative icons
-- Structured status icons: Listed → 🌸, Applied → 🎀, Interview → 🩰, Offer → 🦢, Rejected → 🕯️, Strong Match → 🧸
+A soft pastel design with playful icons.
 
+### Splatter
 
-**Splatter Theme**
-- Stronger typography hierarchy
-- Clear separation between headers and data
-- Fonts: Headers — Sedgwick Ave Display, Body — JetBrains Mono
-- Status icons: Listed → 🎨, Applied → 🛹, Interview → 🎭, Offer → 🖌️, Rejected → 🖍️, Strong Match → 🧱
+A high-contrast graffiti-inspired design.
 
-## Engineering Decisions
+Themes only change how the app looks.
 
-- Dynamic UI components instead of hardcoded cards
-- Centralized theme system
-- Structured JSON output from AI (no freeform text)
-- All downstream logic depends on normalized data
-- Location matching is text-based (location string and remote-status matching); the earlier simulated distance estimate (based on company name and title length) has been removed entirely
+They do not change how the filters work.
 
-## Project Evolution
+---
 
-Originally built as a job search helper. It evolved into a system that:
-- Filters recruiter noise
-- Evaluates job quality
-- Flags cover letter and account requirements up front
-- Surfaces company reputation before you apply, via live search-grounded AI lookup or manual entry
-- Tracks application states
-- Recognizes job board sources from pasted text
-- Turns job search into a structured pipeline
+## Technology Used
 
-## Future Improvements
+The project was built with:
 
-- Persistent database
-- User authentication
-- Saved searches
-- Resume matching
-- Hiring analytics
-- Browser extension ingestion (would let listings be captured while browsing, instead of copy-pasted)
-- Real geocoding for a genuine distance/mile-radius filter (current version is text-match only)
-- Resume tailoring automation
+* React
+* TypeScript
+* Vite
+* Node.js
+* Express
+* Google Gemini
+* JSON
+* Local storage
+
+---
+
+## Basic Technical Flow
+
+```text
+User pastes a job listing
+        ↓
+The app checks the input
+        ↓
+The listing is sent to the Express server
+        ↓
+Google Gemini reads the job description
+        ↓
+The job is turned into structured JSON
+        ↓
+The app checks salary, experience, location, and other rules
+        ↓
+The job appears in the dashboard
+```
+
+---
+
+## Why the App Uses JSON
+
+Gemini returns job information in a structured format.
+
+This makes it easier for the app to consistently read fields like:
+
+* Company
+* Job title
+* Salary
+* Location
+* Experience
+* Skills
+* Application requirements
+
+The app does not rely only on a paragraph written by AI.
+
+---
+
+## Project Changes
+
+The project started as a simple job tracker.
+
+It later grew to include:
+
+* AI job description parsing
+* Staffing agency filtering
+* Salary checks
+* Experience checks
+* Cover letter detection
+* Account signup warnings
+* Company reputation checks
+* Job board recognition
+* Application tracking
+* Analytics
+* Theme options
+* Suggested job titles
+
+---
+
+## Current Limits
+
+The app depends on the information inside the job listing.
+
+It may not always correctly identify:
+
+* Salary
+* Experience level
+* Staffing agencies
+* Company ratings
+* Cover letter requirements
+* Job board sources
+
+AI results should still be reviewed by the user.
+
+The app helps with decisions, but it does not make the final decision for you.
+
+---
+
+## Future Plans
+
+Possible future updates include:
+
+* User accounts
+* A permanent database
+* Saved searches
+* Resume matching
+* Resume tailoring
+* Better duplicate detection
+* More application analytics
+* A browser extension
+* Real distance and commute calculations
+* More export options
+
+---
+
+## Setup
+
+Create a `.env` file and add your Gemini API key.
+
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+The API key stays on the server and is not shown in the browser.
+
+---
+
+## Main Goal
+
+Job Tracker & Search Shield helps you spend less time sorting through bad job listings.
+
+It helps you:
+
+* Find better matches
+* Avoid staffing agency noise
+* Catch misleading requirements
+* See application requirements early
+* Track your progress
+* Focus on jobs that are actually worth your time
+
+```
+```
