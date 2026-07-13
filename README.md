@@ -1,4 +1,3 @@
-````md
 # Job Tracker & Search Shield
 
 **An AI-powered tool that helps you decide which jobs are worth applying to.**
